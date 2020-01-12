@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">ToDo</string>
+    <string name="app_name">ToDo List</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="main_title">@string/app_name</string>
+    <string name="main_todo_duedate">Due date: %s</string>
+    <string name="main_todo_location">Location: %s</string>
+
+    <string name="main_add_title">Add ToDo</string>
+    <string name="main_add">Add</string>
+    <string name="main_edit">Edit</string>
+    <string name="main_delete">Delete</string>
+    <string name="main_hint_name">Name</string>
+    <string name="main_hint_duedate">Due date</string>
+    <string name="main_hint_location">Location</string>
 </resources>
