@@ -8,11 +8,15 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import java.sql.RowId
 import java.util.*
 
 class MainPresenter(
-    val view: MainView, val locationClient: FusedLocationProviderClient, val uiScheduler: Scheduler,
-    val processScheduler: Scheduler, val repository: TodoRepository
+    val view: MainView,
+    val locationClient: FusedLocationProviderClient,
+    val uiScheduler: Scheduler,
+    val processScheduler: Scheduler,
+    val repository: TodoRepository
 ) {
 
     private val disposables = CompositeDisposable()
@@ -56,7 +60,11 @@ class MainPresenter(
     private fun getDefaultLocation() = Location("dummy_provider")
 
     fun onTodoAdded(todo: Todo) {
-        addDisposable(repository.saveTodo(todo).subscribeOn(processScheduler).observeOn(uiScheduler).subscribe())
+        addDisposable(repository.saveTodo(todo).subscribeOn(processScheduler).observeOn(uiScheduler).subscribe { rowId -> todo.id = rowId })
+    }
+
+    fun onTodoDeleted(todo:Todo) {
+        addDisposable(repository.deleteTodo(todo).subscribeOn(processScheduler).observeOn(uiScheduler).subscribe())
     }
 
     fun onViewDestroyed() {

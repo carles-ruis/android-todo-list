@@ -7,16 +7,16 @@ import com.carles.todo.model.Todo
 
 @Entity(tableName = "todo")
 data class TodoVo(
-    @PrimaryKey(autoGenerate = true) var id: Int? = null,
+    @PrimaryKey(autoGenerate = true) var id: Long? = null,
     var name: String,
     var date: Long,
     var latitude: Double,
     var longitude: Double
 )
 
-fun Todo.toVo() = TodoVo(name = name, date = date, latitude = location.latitude, longitude = location.longitude)
+fun Todo.toVo() = TodoVo(id = id, name = name, date = date, latitude = location.latitude, longitude = location.longitude)
 
-fun TodoVo.toModel() = Todo(name = name, date = date,
+fun TodoVo.toModel() = Todo(id = id, name = name, date = date,
     location = Location("dummy_provider").also { location ->
         location.latitude = latitude
         location.longitude = longitude

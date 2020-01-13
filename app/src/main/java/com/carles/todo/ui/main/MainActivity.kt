@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import com.carles.todo.R
 import com.carles.todo.model.Todo
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -23,7 +24,6 @@ class MainActivity : AppCompatActivity(), MainView, AddTodoDialogFragment.AddTod
     private val presenter: MainPresenter by inject { parametersOf(this) }
 
     private val showEditDialog: (Todo) -> Unit = { Toast.makeText(this, "EDIT", Toast.LENGTH_SHORT).show() }
-    private val showDeleteDialog: (Todo) -> Unit = { Toast.makeText(this, "DELETE", Toast.LENGTH_SHORT).show() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), MainView, AddTodoDialogFragment.AddTod
     }
 
     private fun initViews() {
-        adapter = TodoAdapter(showEditDialog, showDeleteDialog)
+        adapter = TodoAdapter(showEditDialog, ::showDeleteConfirmationDialog)
         main_recyclerview.addItemDecoration(DividerItemDecoration(this, VERTICAL))
         main_recyclerview.adapter = adapter
 
@@ -67,6 +67,20 @@ class MainActivity : AppCompatActivity(), MainView, AddTodoDialogFragment.AddTod
 
     override fun showAddDialog(date: Long, location: Location) {
         AddTodoDialogFragment.newInstance(date, location).show(supportFragmentManager, AddTodoDialogFragment.TAG)
+    }
+
+    private fun showDeleteConfirmationDialog(todo:Todo) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.main_delete_confirmation_title)
+            .setMessage(R.string.main_delete_confirmation_message)
+            .setPositiveButton(R.string.main_delete_confirmation) { _,_ -> deleteTodo(todo) }
+            .setNegativeButton(R.string.cancel) {_,_ -> }
+            .show()
+    }
+
+    private fun deleteTodo(todo:Todo) {
+        presenter.onTodoDeleted(todo)
+        adapter.deleteItem(todo)
     }
 
     override fun showLoading() {
