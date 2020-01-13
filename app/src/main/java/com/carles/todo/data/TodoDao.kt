@@ -12,7 +12,7 @@ interface TodoDao {
     fun insertTodo(todo: TodoVo): Single<Long>
 
     @Query("SELECT * from todo")
-    fun getAllTodos(): Flowable<List<TodoVo>>
+    fun getAllTodos(): Single<List<TodoVo>>
 
     @Delete
     fun deleteTodo(todo: TodoVo): Completable

@@ -38,9 +38,7 @@ class TodoAdapter(val onEditClicked: (Todo) -> Unit, val onDeleteClicked: (Todo)
     }
 
     fun editItem(item: Todo) {
-        items.indexOf(item).let { position ->
-            notifyItemChanged(position)
-        }
+        items.indexOf(item).let { position -> notifyItemChanged(position) }
     }
 
     fun deleteItem(item: Todo) {
@@ -50,8 +48,7 @@ class TodoAdapter(val onEditClicked: (Todo) -> Unit, val onDeleteClicked: (Todo)
         }
     }
 
-    inner class ViewHolder(override val containerView: View) :
-            RecyclerView.ViewHolder(containerView), LayoutContainer {
+    inner class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
         private val resources = containerView.resources
 

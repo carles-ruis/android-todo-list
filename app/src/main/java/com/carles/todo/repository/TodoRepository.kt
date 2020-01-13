@@ -12,10 +12,10 @@ class TodoRepository(val dao: TodoDao) {
 
     fun insertTodo(todo: Todo) : Single<Long> = dao.insertTodo(todo.toVo())
 
-    fun getAllTodos() : Flowable<List<Todo>> = dao.getAllTodos().map { list -> list.map {
+    fun getAllTodos() : Single<List<Todo>> = dao.getAllTodos().map { list -> list.map {
             vo -> vo.toModel() } }
 
-    fun deleteTodo(todo:Todo)  : Completable = dao.deleteTodo(todo.toVo())
+    fun deleteTodo(todo:Todo) : Completable = dao.deleteTodo(todo.toVo())
 
     fun updateTodo(todo: Todo) : Completable = dao.updateTodo(todo.toVo())
 }
