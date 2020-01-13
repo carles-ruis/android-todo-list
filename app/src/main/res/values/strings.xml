@@ -5,18 +5,18 @@
     <string name="main_title">@string/app_name</string>
     <string name="main_todo_duedate">Due date: %s</string>
     <string name="main_todo_location">Location: %s</string>
-    <string name="main_duedate_formatted">%1$02d / %2$02d / %3$02d</string>
-    <string name="main_location_formatted">%1$s, %2$s</string>
+    <string name="main_todo_duedate_formatted">%1$02d / %2$02d / %3$02d</string>
+    <string name="main_todo_location_formatted">%1$s, %2$s</string>
 
     <string name="main_add_title">Add ToDo</string>
-    <string name="main_add">Add</string>
-    <string name="main_edit">Edit</string>
-    <string name="main_delete">Delete</string>
-    <string name="main_hint_name">Name</string>
-    <string name="main_hint_duedate">Due date</string>
-    <string name="main_hint_location">Location</string>
-    <string name="main_title_duedate">Due date</string>
-    <string name="main_delete_confirmation_title">Delete ToDo</string>
-    <string name="main_delete_confirmation_message">This ToDo will be deleted. Are you sure?</string>
-    <string name="main_delete_confirmation">Delete</string>
+    <string name="main_add_confirm">Add</string>
+    <string name="main_edit_title">Edit ToDo</string>
+    <string name="main_edit_confirm">Edit</string>
+    <string name="main_dialog_hint_name">Name</string>
+    <string name="main_dialog_hint_duedate">Due date</string>
+    <string name="main_dialog_hint_location">Location</string>
+    <string name="main_calendar_title">Due date</string>
+    <string name="main_delete_title">Delete ToDo</string>
+    <string name="main_delete_message">This ToDo will be deleted. Are you sure?</string>
+    <string name="main_delete_confirm">Delete</string>
 </resources>

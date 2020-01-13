@@ -8,7 +8,6 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import java.sql.RowId
 import java.util.*
 
 class MainPresenter(
@@ -54,13 +53,17 @@ class MainPresenter(
 
     private fun showAddDialog(date: Long, location: Location) {
         view.hideLoading()
-        view.showAddDialog(date, location)
+        view.showAddDialog(Todo("", date, location))
     }
 
     private fun getDefaultLocation() = Location("dummy_provider")
 
     fun onTodoAdded(todo: Todo) {
-        addDisposable(repository.saveTodo(todo).subscribeOn(processScheduler).observeOn(uiScheduler).subscribe { rowId -> todo.id = rowId })
+        addDisposable(repository.insertTodo(todo).subscribeOn(processScheduler).observeOn(uiScheduler).subscribe { rowId -> todo.id = rowId })
+    }
+
+    fun onTodoEdited(todo:Todo) {
+        addDisposable(repository.updateTodo(todo).subscribeOn(processScheduler).observeOn(uiScheduler).subscribe())
     }
 
     fun onTodoDeleted(todo:Todo) {

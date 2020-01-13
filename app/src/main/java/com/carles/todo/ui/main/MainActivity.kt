@@ -2,9 +2,7 @@ package com.carles.todo.ui.main
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.location.Location
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -17,15 +15,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-class MainActivity : AppCompatActivity(), MainView, AddTodoDialogFragment.AddTodoListener {
+class MainActivity : AppCompatActivity(), MainView, TodoDialogFragment.TodoDialogListener {
 
     private val REQUEST_PERMISSION_FOR_ADD_LOCATION = 100
     private lateinit var adapter: TodoAdapter
     private val presenter: MainPresenter by inject { parametersOf(this) }
 
-    private val showEditDialog: (Todo) -> Unit = { Toast.makeText(this, "EDIT", Toast.LENGTH_SHORT).show() }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initViews()
@@ -33,7 +29,7 @@ class MainActivity : AppCompatActivity(), MainView, AddTodoDialogFragment.AddTod
     }
 
     private fun initViews() {
-        adapter = TodoAdapter(showEditDialog, ::showDeleteConfirmationDialog)
+        adapter = TodoAdapter(::showEditDialog, ::showDeleteConfirmationDialog)
         main_recyclerview.addItemDecoration(DividerItemDecoration(this, VERTICAL))
         main_recyclerview.adapter = adapter
 
@@ -65,15 +61,19 @@ class MainActivity : AppCompatActivity(), MainView, AddTodoDialogFragment.AddTod
         adapter.setItems(todos)
     }
 
-    override fun showAddDialog(date: Long, location: Location) {
-        AddTodoDialogFragment.newInstance(date, location).show(supportFragmentManager, AddTodoDialogFragment.TAG)
+    override fun showAddDialog(todo:Todo) {
+        AddTodoDialogFragment.newInstance(todo).show(supportFragmentManager, AddTodoDialogFragment.TAG)
+    }
+
+    private fun showEditDialog(todo: Todo) {
+        EditTodoDialogFragment.newInstance(todo).show(supportFragmentManager, EditTodoDialogFragment.TAG)
     }
 
     private fun showDeleteConfirmationDialog(todo:Todo) {
         MaterialAlertDialogBuilder(this)
-            .setTitle(R.string.main_delete_confirmation_title)
-            .setMessage(R.string.main_delete_confirmation_message)
-            .setPositiveButton(R.string.main_delete_confirmation) { _,_ -> deleteTodo(todo) }
+            .setTitle(R.string.main_delete_title)
+            .setMessage(R.string.main_delete_message)
+            .setPositiveButton(R.string.main_delete_confirm) { _, _ -> deleteTodo(todo) }
             .setNegativeButton(R.string.cancel) {_,_ -> }
             .show()
     }
@@ -97,6 +97,11 @@ class MainActivity : AppCompatActivity(), MainView, AddTodoDialogFragment.AddTod
     override fun onTodoAdded(todo: Todo) {
         adapter.addItem(todo)
         presenter.onTodoAdded(todo)
+    }
+
+    override fun onTodoEdited(todo : Todo) {
+        adapter.editItem(todo)
+        presenter.onTodoEdited(todo)
     }
 
 }

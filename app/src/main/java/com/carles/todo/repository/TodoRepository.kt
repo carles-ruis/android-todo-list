@@ -10,9 +10,12 @@ import io.reactivex.Single
 
 class TodoRepository(val dao: TodoDao) {
 
-    fun saveTodo(todo: Todo) : Single<Long> = dao.saveTodo(todo.toVo())
+    fun insertTodo(todo: Todo) : Single<Long> = dao.insertTodo(todo.toVo())
 
-    fun getAllTodos() : Flowable<List<Todo>> = dao.getAllTodos().map { list -> list.map { vo -> vo.toModel() } }
+    fun getAllTodos() : Flowable<List<Todo>> = dao.getAllTodos().map { list -> list.map {
+            vo -> vo.toModel() } }
 
     fun deleteTodo(todo:Todo)  : Completable = dao.deleteTodo(todo.toVo())
+
+    fun updateTodo(todo: Todo) : Completable = dao.updateTodo(todo.toVo())
 }

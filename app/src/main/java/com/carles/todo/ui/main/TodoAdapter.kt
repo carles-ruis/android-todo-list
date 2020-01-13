@@ -3,6 +3,7 @@ package com.carles.todo.ui.main
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import com.carles.todo.R
 import com.carles.todo.model.Todo
 import com.carles.todo.ui.inflate
@@ -36,9 +37,8 @@ class TodoAdapter(val onEditClicked: (Todo) -> Unit, val onDeleteClicked: (Todo)
         notifyItemChanged(itemCount - 1)
     }
 
-    fun editItem(oldItem: Todo, newItem: Todo) {
-        items.indexOf(oldItem).let { position ->
-            items.set(position, newItem)
+    fun editItem(item: Todo) {
+        items.indexOf(item).let { position ->
             notifyItemChanged(position)
         }
     }

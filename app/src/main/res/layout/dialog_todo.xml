@@ -11,7 +11,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/main_hint_name"
+        android:hint="@string/main_dialog_hint_name"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -29,14 +29,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="@string/main_hint_duedate"
+        android:hint="@string/main_dialog_hint_duedate"
         app:layout_constraintTop_toBottomOf="@id/add_todo_name_inputlayout">
 
-        <!--  <com.google.android.material.textview.MaterialTextView
-              android:id="@+id/add_todo_duedate_edittext"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-                     tools:text="@tools:sample/date/mmddyy" /> -->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/add_todo_duedate_edittext"
             android:layout_width="match_parent"
@@ -52,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="@string/main_hint_location"
+        android:hint="@string/main_dialog_hint_location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/add_todo_duedate_inputlayout">
 
