@@ -2,8 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.carles.todo">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
     <application
-        android:name=".ToDoApplication"
+        android:name=".TodoApplication"
         android:allowBackup="true"
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
@@ -22,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
     </application>
 </manifest>

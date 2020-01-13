@@ -28,31 +28,40 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:hint="@string/main_hint_duedate"
         app:layout_constraintTop_toBottomOf="@id/add_todo_name_inputlayout">
 
+        <!--  <com.google.android.material.textview.MaterialTextView
+              android:id="@+id/add_todo_duedate_edittext"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+                     tools:text="@tools:sample/date/mmddyy" /> -->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/add_todo_duedate_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             tools:text="@tools:sample/date/mmddyy" />
-
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:hint="@string/main_hint_location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/add_todo_duedate_inputlayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/add_todo_location_textview"
+            android:id="@+id/add_todo_location_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             tools:text="13.35646, 0.923478" />
     </com.google.android.material.textfield.TextInputLayout>
 

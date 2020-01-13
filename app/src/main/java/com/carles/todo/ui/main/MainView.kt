@@ -1,10 +1,12 @@
 package com.carles.todo.ui.main
 
-import java.util.*
+import android.location.Location
+import com.carles.todo.model.Todo
 
 interface MainView {
 
-    fun showAddDialog(calendar: Calendar, location:String)
+    fun showTodos(todos: List<Todo>)
+    fun showAddDialog(date: Long, location: Location)
     fun showLoading()
     fun hideLoading()
 

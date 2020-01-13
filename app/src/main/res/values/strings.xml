@@ -5,6 +5,8 @@
     <string name="main_title">@string/app_name</string>
     <string name="main_todo_duedate">Due date: %s</string>
     <string name="main_todo_location">Location: %s</string>
+    <string name="main_duedate_formatted">%1$02d / %2$02d / %3$02d</string>
+    <string name="main_location_formatted">%1$s, %2$s</string>
 
     <string name="main_add_title">Add ToDo</string>
     <string name="main_add">Add</string>
@@ -13,4 +15,5 @@
     <string name="main_hint_name">Name</string>
     <string name="main_hint_duedate">Due date</string>
     <string name="main_hint_location">Location</string>
+    <string name="main_title_duedate">Due date</string>
 </resources>
