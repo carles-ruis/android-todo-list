@@ -3,6 +3,8 @@ package com.carles.todo.ui.main
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -12,6 +14,7 @@ import com.carles.todo.R
 import com.carles.todo.model.Todo
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.view_progress.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -33,20 +36,16 @@ class MainActivity : AppCompatActivity(), MainView, TodoDialogFragment.TodoDialo
         main_recyclerview.addItemDecoration(DividerItemDecoration(this, VERTICAL))
         main_recyclerview.adapter = adapter
 
-        main_fab.setOnClickListener { onAddClicked() }
+        main_fab.setOnClickListener { checkPermissionsAndAddTodo() }
     }
 
-    private fun onAddClicked() {
-        showLoading()
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+    private fun checkPermissionsAndAddTodo() {
+        val locationPermission = Manifest.permission.ACCESS_FINE_LOCATION
+        if (ContextCompat.checkSelfPermission(this, locationPermission) == PackageManager.PERMISSION_GRANTED) {
             presenter.onAddClicked()
         } else {
-            requestLocationPermission(REQUEST_PERMISSION_FOR_ADD_LOCATION)
+            ActivityCompat.requestPermissions(this, arrayOf(locationPermission), REQUEST_PERMISSION_FOR_ADD_LOCATION)
         }
-    }
-
-    private fun requestLocationPermission(requestCode: Int) {
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), requestCode)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -84,9 +83,11 @@ class MainActivity : AppCompatActivity(), MainView, TodoDialogFragment.TodoDialo
     }
 
     override fun showLoading() {
+        progress.visibility = VISIBLE
     }
 
     override fun hideLoading() {
+        progress.visibility = GONE
     }
 
     override fun onDestroy() {

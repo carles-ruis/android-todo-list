@@ -9,7 +9,7 @@ class EditTodoDialogFragment : TodoDialogFragment() {
     companion object {
         val TAG = EditTodoDialogFragment::javaClass.name
         fun newInstance(todo: Todo) = EditTodoDialogFragment().apply {
-            arguments = Bundle().apply { putSerializable(EXTRA_TODO, todo) }
+            arguments = Bundle().apply { putParcelable(EXTRA_TODO, todo) }
         }
     }
 

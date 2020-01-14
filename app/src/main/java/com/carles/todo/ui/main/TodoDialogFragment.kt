@@ -42,7 +42,7 @@ abstract class TodoDialogFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        todo = arguments!!.getSerializable(EXTRA_TODO) as Todo
+        todo = arguments!!.getParcelable(EXTRA_TODO)!!
         name = todo.name
         date = todo.date
         location = todo.location

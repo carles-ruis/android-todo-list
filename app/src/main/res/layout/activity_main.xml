@@ -43,4 +43,6 @@
         app:srcCompat="@drawable/ic_add_black_24dp"
         app:tint="@android:color/white" />
 
+    <include layout="@layout/view_progress" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

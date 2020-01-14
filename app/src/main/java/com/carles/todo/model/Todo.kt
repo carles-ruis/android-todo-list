@@ -1,9 +1,11 @@
 package com.carles.todo.model
 
 import android.location.Location
-import java.io.Serializable
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-data class Todo(var name: String, var date: Long, var location: Location, var id: Long? = null) : Serializable {
+@Parcelize
+data class Todo(var name: String, var date: Long, var location: Location, var id: Long? = null) : Parcelable {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

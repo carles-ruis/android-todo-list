@@ -33,6 +33,7 @@ class MainPresenter(
     }
 
     private fun onGetTodosError(throwable: Throwable) {
+        view.hideLoading()
         Log.e(javaClass.name, "onGetTodosError:" + throwable.message)
     }
 
