@@ -5,9 +5,12 @@ import android.location.Location.FORMAT_DEGREES
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.fragment.app.DialogFragment
 import java.util.*
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int) = LayoutInflater.from(context).inflate(layoutRes, this, false)
+
+fun DialogFragment.inflate(@LayoutRes layoutRes: Int) = LayoutInflater.from(context).inflate(layoutRes, null)
 
 fun Location.toFormattedString() = String.format("%s, %s",
         Location.convert(latitude, FORMAT_DEGREES),
