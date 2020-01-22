@@ -1,21 +1,16 @@
 package com.carles.todo.repository
 
 import com.carles.todo.data.TodoDao
-import com.carles.todo.data.toModel
-import com.carles.todo.data.toVo
 import com.carles.todo.model.Todo
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Single
+import java.util.concurrent.TimeUnit
 
 class TodoRepository(val dao: TodoDao) {
 
-    fun insertTodo(todo: Todo) : Single<Long> = dao.insertTodo(todo.toVo())
+    fun insertTodo(todo: Todo) = dao.insertTodo(todo)
 
-    fun getAllTodos() : Single<List<Todo>> = dao.getAllTodos().map { list -> list.map {
-            vo -> vo.toModel() } }
+    fun getAllTodos() = dao.getAllTodos()
 
-    fun deleteTodo(todo:Todo) : Completable = dao.deleteTodo(todo.toVo())
+    fun deleteTodo(todo:Todo) = dao.deleteTodo(todo)
 
-    fun updateTodo(todo: Todo) : Completable = dao.updateTodo(todo.toVo())
+    fun updateTodo(todo: Todo) = dao.updateTodo(todo)
 }

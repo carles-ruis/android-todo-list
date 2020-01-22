@@ -49,7 +49,7 @@
         android:id="@+id/todo_edit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/main_edit_confirm"
+        android:contentDescription="@string/main_edit_title"
         android:padding="12dp"
         android:scaleType="center"
         android:src="@drawable/ic_edit_black_24dp"

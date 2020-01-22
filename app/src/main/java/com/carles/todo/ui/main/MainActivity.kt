@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), MainView, TodoDialogFragment.TodoDialo
     }
 
     override fun showTodos(todos: List<Todo>) {
-        adapter.setItems(todos)
+        adapter.items = todos.toMutableList()
     }
 
     override fun showAddDialog(todo:Todo) {

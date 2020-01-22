@@ -31,7 +31,8 @@ abstract class TodoDialogFragment : DialogFragment() {
     private lateinit var todo: Todo
     private lateinit var name: String
     private var date: Long = 0
-    private lateinit var location: Location
+    private var latitude : Double = 0.0
+    private var longitude : Double = 0.0
     private lateinit var customView: View
     private lateinit var positiveButton: Button
 
@@ -45,7 +46,8 @@ abstract class TodoDialogFragment : DialogFragment() {
         todo = arguments!!.getParcelable(EXTRA_TODO)!!
         name = todo.name
         date = todo.date
-        location = todo.location
+        latitude = todo.latitude
+        longitude = todo.longitude
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -82,13 +84,12 @@ abstract class TodoDialogFragment : DialogFragment() {
 
         customView.add_todo_name_edittext.setText(name)
         customView.add_todo_duedate_edittext.setText(date.toFormattedDateString())
-        customView.add_todo_location_edittext.setText(location.toFormattedString())
+        customView.add_todo_location_edittext.setText(getString(R.string.main_todo_location_formatted, latitude, longitude))
     }
 
     private fun onPositiveButtonClicked() {
         todo.name = add_todo_name_edittext.text.toString()
         todo.date = date
-        todo.location = location
         onPositiveButtonClicked(todo)
         dismiss()
     }

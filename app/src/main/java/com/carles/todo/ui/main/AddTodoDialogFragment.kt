@@ -6,17 +6,17 @@ import com.carles.todo.model.Todo
 
 class AddTodoDialogFragment : TodoDialogFragment() {
 
-    companion object {
-        val TAG = AddTodoDialogFragment::javaClass.name
-        fun newInstance(todo: Todo) = AddTodoDialogFragment().apply {
-            arguments = Bundle().apply { putParcelable(EXTRA_TODO, todo) }
-        }
-    }
-
     override fun getTitleTextRes() = R.string.main_add_title
     override fun getPositiveButtonTextRes() = R.string.main_add_confirm
 
     override fun onPositiveButtonClicked(todo: Todo) {
         listener?.onTodoAdded(todo)
+    }
+
+    companion object {
+        const val TAG = "AddTodoDialogFragment"
+        fun newInstance(todo: Todo) = AddTodoDialogFragment().apply {
+            arguments = Bundle().apply { putParcelable(EXTRA_TODO, todo) }
+        }
     }
 }

@@ -1,11 +1,14 @@
 package com.carles.todo.model
 
-import android.location.Location
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Todo(var name: String, var date: Long, var location: Location, var id: Long? = null) : Parcelable {
+@Entity(tableName = "todo")
+data class Todo(@PrimaryKey(autoGenerate = true) var id: Long? = null, var name: String, var date: Long, val latitude: Double,
+                val longitude: Double) : Parcelable {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

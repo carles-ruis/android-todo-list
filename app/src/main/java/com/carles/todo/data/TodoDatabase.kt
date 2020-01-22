@@ -2,10 +2,9 @@ package com.carles.todo.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.carles.todo.data.TodoDao
-import com.carles.todo.data.TodoVo
+import com.carles.todo.model.Todo
 
-@Database(entities = arrayOf(TodoVo::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Todo::class), version = 1, exportSchema = false)
 abstract class TodoDatabase : RoomDatabase() {
 
     abstract fun dao() : TodoDao
