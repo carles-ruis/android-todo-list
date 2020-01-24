@@ -10,8 +10,8 @@ import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import java.util.*
 
-class MainPresenter(
-    val view: MainView,
+class TodoListPresenter(
+    val view: TodoListView,
     val locationClient: FusedLocationProviderClient,
     val uiScheduler: Scheduler,
     val processScheduler: Scheduler,
@@ -42,30 +42,21 @@ class MainPresenter(
         val date = Date().time
         locationClient.lastLocation.addOnSuccessListener { location: Location? ->
             if (location != null) {
-                showAddDialog(date, location)
+                navigateToAddTodo(date, location)
             } else {
-                showAddDialog(date, getDefaultLocation())
+                navigateToAddTodo(date, getDefaultLocation())
             }
         }.addOnFailureListener {
-            showAddDialog(date, getDefaultLocation())
+            navigateToAddTodo(date, getDefaultLocation())
         }
     }
 
-    private fun showAddDialog(date: Long, location: Location) {
+    private fun navigateToAddTodo(date: Long, location: Location) {
         view.hideLoading()
-        view.showAddDialog(Todo(name = "", date = date, latitude = location.latitude, longitude = location.longitude))
+        view.navigateToAddTodo(Todo(name = "", date = date, latitude = location.latitude, longitude = location.longitude))
     }
 
     private fun getDefaultLocation() = Location("dummy_provider")
-
-    fun onTodoAdded(todo: Todo) {
-        repository.insertTodo(todo).subscribeOn(processScheduler).observeOn(uiScheduler).subscribe { rowId -> todo.id = rowId }
-                .addTo(disposables)
-    }
-
-    fun onTodoEdited(todo:Todo) {
-        repository.updateTodo(todo).subscribeOn(processScheduler).observeOn(uiScheduler).subscribe().addTo(disposables)
-    }
 
     fun onTodoDeleted(todo:Todo) {
         repository.deleteTodo(todo).subscribeOn(processScheduler).observeOn(uiScheduler).subscribe().addTo(disposables)

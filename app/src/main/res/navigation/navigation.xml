@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/todoListFragment">
+
+    <fragment
+        android:id="@+id/todoListFragment"
+        android:name="com.carles.todo.ui.main.TodoListFragment"
+        android:label="TodoListFragment">
+        <action
+            android:id="@+id/action_todoListFragment_to_editTodoFragment"
+            app:destination="@id/editTodoFragment" />
+        <action
+            android:id="@+id/action_todoListFragment_to_addTodoFragment"
+            app:destination="@id/addTodoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editTodoFragment"
+        android:name="com.carles.todo.ui.main.EditTodoFragment"
+        android:label="EditTodoFragment">
+        <argument
+            android:name="extra_todo"
+            app:argType="com.carles.todo.model.Todo" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTodoFragment"
+        android:name="com.carles.todo.ui.main.AddTodoFragment"
+        android:label="AddTodoFragment">
+        <argument
+            android:name="extra_todo"
+            app:argType="com.carles.todo.model.Todo" />
+    </fragment>
+</navigation>

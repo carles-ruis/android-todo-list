@@ -8,6 +8,8 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import java.util.*
 
+const val EXTRA_TODO = "extra_todo"
+
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int) = LayoutInflater.from(context).inflate(layoutRes, this, false)
 
 fun DialogFragment.inflate(@LayoutRes layoutRes: Int) = LayoutInflater.from(context).inflate(layoutRes, null)

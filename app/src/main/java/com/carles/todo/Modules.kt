@@ -3,8 +3,10 @@ package com.carles.todo
 import androidx.room.Room
 import com.carles.todo.data.TodoDatabase
 import com.carles.todo.repository.TodoRepository
-import com.carles.todo.ui.main.MainPresenter
-import com.carles.todo.ui.main.MainView
+import com.carles.todo.ui.main.TodoPresenter
+import com.carles.todo.ui.main.TodoListPresenter
+import com.carles.todo.ui.main.TodoListView
+import com.carles.todo.ui.main.TodoView
 import com.google.android.gms.location.LocationServices
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -25,5 +27,6 @@ val appModule = module {
     single(processScheduler) { Schedulers.io() }
     single { LocationServices.getFusedLocationProviderClient(androidApplication()) }
 
-    factory { (view: MainView) -> MainPresenter(view, get(), get(uiScheduler), get(processScheduler), get()) }
+    factory { (view: TodoListView) -> TodoListPresenter(view, get(), get(uiScheduler), get(processScheduler), get()) }
+    factory { (view: TodoView) -> TodoPresenter(view, get(uiScheduler), get(processScheduler), get(), androidContext()) }
 }
