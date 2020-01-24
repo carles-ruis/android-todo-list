@@ -1,10 +1,8 @@
-package com.carles.todo.repository
+package com.carles.todo.data
 
-import com.carles.todo.data.TodoDao
 import com.carles.todo.model.Todo
-import java.util.concurrent.TimeUnit
 
-class TodoRepository(val dao: TodoDao) {
+class TodoRepository(private val dao: TodoDao) {
 
     fun insertTodo(todo: Todo) = dao.insertTodo(todo)
 

@@ -2,7 +2,7 @@ package com.carles.todo
 
 import androidx.room.Room
 import com.carles.todo.data.TodoDatabase
-import com.carles.todo.repository.TodoRepository
+import com.carles.todo.data.TodoRepository
 import com.carles.todo.ui.main.TodoPresenter
 import com.carles.todo.ui.main.TodoListPresenter
 import com.carles.todo.ui.main.TodoListView

@@ -3,14 +3,18 @@ package com.carles.todo.ui.main
 import android.content.Context
 import com.carles.todo.R
 import com.carles.todo.model.Todo
-import com.carles.todo.repository.TodoRepository
+import com.carles.todo.data.TodoRepository
 import com.carles.todo.ui.addTo
 import com.carles.todo.ui.toFormattedDateString
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 
-class TodoPresenter(val view: TodoView, val uiScheduler: Scheduler, val processScheduler: Scheduler,
-                    val repository: TodoRepository, val context: Context) {
+class TodoPresenter(
+        private val view: TodoView,
+        private val uiScheduler: Scheduler,
+        private val processScheduler: Scheduler,
+        private val repository: TodoRepository,
+        private val context: Context) {
 
     private val disposables = CompositeDisposable()
     private lateinit var todo: Todo

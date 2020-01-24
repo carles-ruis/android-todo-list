@@ -3,7 +3,7 @@ package com.carles.todo.ui.main
 import android.location.Location
 import android.util.Log
 import com.carles.todo.model.Todo
-import com.carles.todo.repository.TodoRepository
+import com.carles.todo.data.TodoRepository
 import com.carles.todo.ui.addTo
 import com.google.android.gms.location.FusedLocationProviderClient
 import io.reactivex.Scheduler
@@ -11,11 +11,11 @@ import io.reactivex.disposables.CompositeDisposable
 import java.util.*
 
 class TodoListPresenter(
-    val view: TodoListView,
-    val locationClient: FusedLocationProviderClient,
-    val uiScheduler: Scheduler,
-    val processScheduler: Scheduler,
-    val repository: TodoRepository
+    private val view: TodoListView,
+    private val locationClient: FusedLocationProviderClient,
+    private val uiScheduler: Scheduler,
+    private val processScheduler: Scheduler,
+    private val repository: TodoRepository
 ) {
 
     private val disposables = CompositeDisposable()

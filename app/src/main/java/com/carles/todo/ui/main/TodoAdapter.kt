@@ -12,7 +12,7 @@ import com.carles.todo.ui.toFormattedString
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_todo.*
 
-class TodoAdapter(val onEditClicked: (Todo) -> Unit, val onDeleteClicked: (Todo) -> Unit) :
+class TodoAdapter(private val onEditClicked: (Todo) -> Unit, private val onDeleteClicked: (Todo) -> Unit) :
         RecyclerView.Adapter<TodoAdapter.ViewHolder>() {
 
     var items = mutableListOf<Todo>()
@@ -29,15 +29,6 @@ class TodoAdapter(val onEditClicked: (Todo) -> Unit, val onDeleteClicked: (Todo)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBindView(items.get(position))
-    }
-
-    fun addItem(item: Todo) {
-        items.add(item)
-        notifyItemChanged(itemCount - 1)
-    }
-
-    fun editItem(item: Todo) {
-        items.indexOf(item).let { position -> notifyItemChanged(position) }
     }
 
     fun deleteItem(item: Todo) {
